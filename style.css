@@ -1,9 +1,17 @@
+/* ==========================================
+   Ravikanth Dulam Portfolio - Final Dark Theme CSS
+   ========================================== */
+
 :root {
   --primary: #3b82f6;
+  --primary-dark: #2563eb;
   --dark: #0f172a;
   --gray: #1e293b;
+  --gray-light: #334155;
   --text: #e2e8f0;
   --text-muted: #94a3b8;
+  --border: #334155;
+  --shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
 * {
@@ -13,38 +21,36 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--dark);
   color: var(--text);
-  line-height: 1.55;
+  line-height: 1.6;
   font-size: 15.5px;
 }
 
 .container {
-  max-width: 1050px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 0 18px;
+  padding: 0 20px;
 }
 
+/* ====================
+   Header / Hero
+   ==================== */
 header {
   background: linear-gradient(135deg, #1e3a8a 0%, #111827 100%);
-  padding: 60px 0 40px;
+  padding: 80px 0 60px;
   text-align: center;
 }
 
-header h1 {
-  font-size: 2.4rem;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-  color: white;
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.5rem;
+  flex-wrap: wrap;
 }
 
-header .subtitle {
-  font-size: 1.18rem;
-  color: var(--primary);
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
 .profile-pic img {
   width: 220px;
   height: 220px;
@@ -53,58 +59,92 @@ header .subtitle {
   border: 6px solid var(--primary);
   box-shadow: var(--shadow);
   transition: transform 0.3s ease;
-}commint 
+}
+
+.profile-pic img:hover {
+  transform: scale(1.05);
+}
+
+.hero-text {
+  max-width: 550px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
 .contact-info {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
   flex-wrap: wrap;
-  margin-top: 0.8rem;
-  font-size: 0.95rem;
+  gap: 1.8rem 2rem;
+  margin: 1.5rem 0 2rem;
+  font-size: 1.05rem;
+}
+
+.contact-info div {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .contact-info a {
   color: var(--text);
   text-decoration: none;
+  transition: color 0.3s;
 }
 
 .contact-info a:hover {
   color: var(--primary);
 }
 
-/* Reduced spacing between sections */
-section {
-  padding: 32px 0 20px;
+.btn-resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  background: var(--primary);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-section + section {
-  padding-top: 12px;
-}
-
-.card {
-  background: var(--gray);
-  border-radius: 10px;
-  padding: 1.4rem;
-  margin-bottom: 1.2rem;
-  border: 1px solid #334155;
-  transition: all 0.2s ease;
-}
-
-.card:hover {
+.btn-resume:hover {
+  background: var(--primary-dark);
   transform: translateY(-3px);
-  box-shadow: 0 12px 20px -5px rgba(0,0,0,0.35);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
 }
 
-/* Remove extra bottom margin after last card or skills grid */
-section > .card:last-child,
-.skills-grid {
-  margin-bottom: 0;
+/* ====================
+   Main content
+   ==================== */
+main .container {
+  padding: 40px 20px;
+}
+
+section {
+  padding: 50px 0 30px;
 }
 
 h2 {
-  font-size: 1.85rem;
+  font-size: 2.2rem;
   color: white;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.5rem;
   position: relative;
   display: inline-block;
 }
@@ -112,79 +152,137 @@ h2 {
 h2:after {
   content: '';
   position: absolute;
-  width: 50px;
-  height: 3px;
+  width: 70px;
+  height: 4px;
   background: var(--primary);
-  bottom: -8px;
+  bottom: -12px;
   left: 0;
+  border-radius: 2px;
+}
+
+.card,
+.project-card {
+  background: var(--gray);
+  border-radius: 12px;
+  padding: 1.8rem;
+  margin-bottom: 1.8rem;
+  border: 1px solid var(--border);
+  transition: all 0.25s ease;
+}
+
+.card:hover,
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
 }
 
 .card h3 {
   color: var(--primary);
-  font-size: 1.25rem;
-  margin-bottom: 0.7rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
 }
 
 .company {
   color: var(--text-muted);
-  font-size: 0.92rem;
-  margin-bottom: 0.9rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
   font-style: italic;
 }
 
 ul.bullet-list {
   list-style: none;
-  padding-left: 1.2rem;
+  padding-left: 1.4rem;
 }
 
 ul.bullet-list li {
   position: relative;
-  margin-bottom: 0.65rem;
-  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
 }
 
 ul.bullet-list li:before {
   content: "•";
   color: var(--primary);
   position: absolute;
-  left: -1.2rem;
-  font-size: 1.25rem;
+  left: -1.4rem;
+  font-size: 1.6rem;
+  line-height: 1;
 }
 
+/* Skills */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.4rem;
 }
 
+.skills-grid .card {
+  text-align: center;
+  padding: 1.6rem;
+}
+
+/* Projects with images */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.project-img {
+  max-width: 320px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  transition: transform 0.3s;
+}
+
+.project-img:hover {
+  transform: scale(1.03);
+}
+
+/* Footer */
 footer {
   background: #0a0f1a;
   text-align: center;
-  padding: 1.8rem 0;
+  padding: 3rem 0 2rem;
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
 }
 
-/* Mobile adjustments */
+.social-links {
+  margin-top: 1.2rem;
+}
+
+.social-links a {
+  color: var(--text-muted);
+  margin: 0 1.2rem;
+  font-size: 1.8rem;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: var(--primary);
+}
+
+/* ====================
+   Responsive
+   ==================== */
+@media (max-width: 992px) {
+  .hero { gap: 2.5rem; }
+  header h1 { font-size: 2.6rem; }
+}
+
 @media (max-width: 768px) {
-  header {
-    padding: 50px 0 35px;
-  }
-  header h1 {
-    font-size: 2rem;
-  }
-  header .subtitle {
-    font-size: 1.05rem;
-  }
-  .contact-info {
-    flex-direction: column;
-    gap: 0.6rem;
-    font-size: 0.92rem;
-  }
-  section {
-    padding: 28px 0 16px;
-  }
-  h2 {
-    font-size: 1.65rem;
-  }
+  header { padding: 60px 0 40px; }
+  .hero { flex-direction: column; gap: 2rem; }
+  .profile-pic img { width: 180px; height: 180px; }
+  header h1 { font-size: 2.4rem; }
+  .subtitle { font-size: 1.25rem; }
+  .contact-info { flex-direction: column; gap: 1rem; }
+  h2 { font-size: 1.9rem; }
+  .project-header { flex-direction: column; align-items: center; }
+  .project-img { max-width: 100%; }
 }
