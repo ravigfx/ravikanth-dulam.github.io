@@ -45,7 +45,15 @@ header .subtitle {
   font-weight: 500;
   margin-bottom: 1rem;
 }
-
+.profile-pic img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid var(--primary);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
 .contact-info {
   display: flex;
   justify-content: center;
