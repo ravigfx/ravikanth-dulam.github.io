@@ -26,22 +26,21 @@ body {
   padding: 0 18px;
 }
 
-/* Much shorter header */
 header {
   background: linear-gradient(135deg, #1e3a8a 0%, #111827 100%);
-  padding: 60px 0 40px;           /* significantly reduced height */
+  padding: 60px 0 40px;
   text-align: center;
 }
 
 header h1 {
-  font-size: 2.4rem;              /* smaller title */
+  font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 0.4rem;
   color: white;
 }
 
 header .subtitle {
-  font-size: 1.18rem;             /* smaller subtitle */
+  font-size: 1.18rem;
   color: var(--primary);
   font-weight: 500;
   margin-bottom: 1rem;
@@ -65,15 +64,39 @@ header .subtitle {
   color: var(--primary);
 }
 
-/* Main content */
+/* Reduced spacing between sections */
 section {
-  padding: 50px 0;                /* reduced vertical spacing */
+  padding: 32px 0 20px;
+}
+
+section + section {
+  padding-top: 12px;
+}
+
+.card {
+  background: var(--gray);
+  border-radius: 10px;
+  padding: 1.4rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #334155;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px -5px rgba(0,0,0,0.35);
+}
+
+/* Remove extra bottom margin after last card or skills grid */
+section > .card:last-child,
+.skills-grid {
+  margin-bottom: 0;
 }
 
 h2 {
   font-size: 1.85rem;
   color: white;
-  margin-bottom: 1.3rem;
+  margin-bottom: 1.1rem;
   position: relative;
   display: inline-block;
 }
@@ -86,20 +109,6 @@ h2:after {
   background: var(--primary);
   bottom: -8px;
   left: 0;
-}
-
-.card {
-  background: var(--gray);
-  border-radius: 10px;
-  padding: 1.4rem;
-  margin-bottom: 1.6rem;
-  border: 1px solid #334155;
-  transition: all 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 20px -5px rgba(0,0,0,0.35);
 }
 
 .card h3 {
@@ -134,14 +143,12 @@ ul.bullet-list li:before {
   font-size: 1.25rem;
 }
 
-/* Skills grid */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.1rem;
 }
 
-/* Footer */
 footer {
   background: #0a0f1a;
   text-align: center;
@@ -167,7 +174,7 @@ footer {
     font-size: 0.92rem;
   }
   section {
-    padding: 40px 0;
+    padding: 28px 0 16px;
   }
   h2 {
     font-size: 1.65rem;
