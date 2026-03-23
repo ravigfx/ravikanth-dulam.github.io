@@ -307,6 +307,12 @@ nav {
   transform: translate(-50%, -50%);
   width: 280px;
   height: 280px;
+  cursor: none;
+}
+
+/* Hover: scale up the whole frame */
+.profile-frame:hover {
+  transform: translate(-50%, -50%) scale(1.04);
 }
 
 .profile-img {
@@ -318,6 +324,78 @@ nav {
   filter: grayscale(20%) contrast(1.1);
   display: block;
   margin: 10px auto;
+  transition: filter 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Hover: remove greyscale, add cyan glow ring */
+.profile-frame:hover .profile-img {
+  filter: grayscale(0%) contrast(1.15) brightness(1.05);
+  border-color: #63d2ff;
+  box-shadow: 0 0 30px rgba(99,210,255,0.45), 0 0 60px rgba(99,210,255,0.2);
+}
+
+/* Shine sweep on hover */
+.profile-img::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -75%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  transition: none;
+  opacity: 0;
+  border-radius: 50%;
+}
+.profile-frame:hover .profile-img::after {
+  animation: shine-sweep 0.6s ease forwards;
+}
+@keyframes shine-sweep {
+  0%   { left: -75%; opacity: 1; }
+  100% { left: 125%; opacity: 1; }
+}
+
+/* Hover: spin inner ring faster */
+.profile-frame:hover .profile-ring {
+  animation-duration: 4s;
+  border-color: rgba(99,210,255,0.7);
+}
+
+/* Hover: spin outer ring faster */
+.profile-frame:hover .profile-ring-2 {
+  animation-duration: 8s;
+  border-color: rgba(99,210,255,0.25);
+}
+
+/* Tooltip tag that appears on hover */
+.profile-frame::after {
+  content: "Ravikanth Dulam";
+  position: absolute;
+  bottom: -2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10,10,15,0.9);
+  border: 1px solid rgba(99,210,255,0.3);
+  color: #63d2ff;
+  font-family: "DM Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(-50%) translateY(6px);
+  z-index: 10;
+}
+.profile-frame:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .avatar-placeholder {
@@ -330,12 +408,21 @@ nav {
   align-items: center;
   justify-content: center;
   margin: 10px auto;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 .avatar-placeholder span {
   font-family: 'Syne', sans-serif;
   font-size: 3.5rem;
   font-weight: 800;
   color: var(--accent);
+  transition: transform 0.3s ease;
+}
+.profile-frame:hover .avatar-placeholder {
+  border-color: #63d2ff;
+  box-shadow: 0 0 30px rgba(99,210,255,0.45), 0 0 60px rgba(99,210,255,0.2);
+}
+.profile-frame:hover .avatar-placeholder span {
+  transform: scale(1.1);
 }
 
 /* Spinning Rings */
