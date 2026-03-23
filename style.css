@@ -201,7 +201,7 @@ nav {
   font-family: 'Syne', sans-serif;
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text);
   letter-spacing: 0.05em;
   margin-bottom: 2rem;
   animation: fadeUp 0.8s 0.2s ease both;
@@ -209,7 +209,7 @@ nav {
 
 .hero-desc {
   font-size: 0.88rem;
-  color: var(--text-muted);
+  color: #a8abbe;
   line-height: 1.8;
   max-width: 460px;
   margin-bottom: 2.5rem;
@@ -295,6 +295,8 @@ nav {
 .hero-visual {
   position: relative;
   height: 520px;
+  overflow: visible;
+  z-index: 2;
   animation: fadeUp 0.8s 0.2s ease both;
 }
 
@@ -373,22 +375,24 @@ nav {
 .stat-card {
   position: absolute;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-accent);
   border-radius: 10px;
   padding: 0.8rem 1.2rem;
   backdrop-filter: blur(10px);
   min-width: 140px;
+  z-index: 10;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
 .stat-card .num {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
   font-size: 1.6rem;
-  color: var(--accent);
+  color: #63d2ff;
   line-height: 1;
 }
 .stat-card .label {
   font-size: 0.68rem;
-  color: var(--text-muted);
+  color: #c0c3d4;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-top: 0.2rem;
@@ -449,25 +453,14 @@ main {
 /* ── About Me ── */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1fr;
+  gap: 2rem;
   align-items: start;
-}
-
-.about-text p {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.9;
-  margin-bottom: 1.2rem;
-}
-.about-text p span {
-  color: var(--accent);
-  font-weight: 500;
 }
 
 .about-pillars {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
@@ -649,6 +642,12 @@ main {
   box-shadow: 0 0 40px var(--glow);
 }
 
+/* Current role highlight */
+.timeline-item:first-child {
+  border-color: rgba(99, 210, 255, 0.2);
+  background: linear-gradient(135deg, var(--surface), rgba(99, 210, 255, 0.03));
+}
+
 .timeline-dot {
   position: absolute;
   left: -2.5rem;
@@ -659,6 +658,19 @@ main {
   border-radius: 50%;
   border: 2px solid var(--ink);
   box-shadow: 0 0 12px var(--accent);
+}
+
+/* Pulsing dot for current role */
+.timeline-item:first-child .timeline-dot {
+  width: 12px;
+  height: 12px;
+  left: -2.55rem;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px var(--accent); }
+  50%       { box-shadow: 0 0 20px var(--accent), 0 0 40px rgba(99, 210, 255, 0.3); }
 }
 
 .timeline-header {
@@ -677,6 +689,7 @@ main {
   color: var(--text);
 }
 
+/* Standard date badge */
 .timeline-badge {
   background: rgba(99, 210, 255, 0.1);
   border: 1px solid var(--border-accent);
@@ -686,6 +699,30 @@ main {
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   white-space: nowrap;
+}
+
+/* Current role "Present" badge — green pulse */
+.current-badge {
+  background: rgba(168, 255, 120, 0.1);
+  border: 1px solid rgba(168, 255, 120, 0.3);
+  color: var(--accent-3);
+  padding: 0.2rem 0.7rem 0.2rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-3);
+  flex-shrink: 0;
+  animation: pulse-dot 2s ease-in-out infinite;
 }
 
 .timeline-company {
@@ -1157,7 +1194,7 @@ footer {
   .blog-grid,
   .certs-grid      { grid-template-columns: 1fr; }
 
-  .about-grid,
+  .about-pillars,
   .contact-grid,
   .arch-diagrams   { grid-template-columns: 1fr; }
 
