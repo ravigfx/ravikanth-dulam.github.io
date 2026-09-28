@@ -241,7 +241,10 @@
         <h2 class="section-title">Architecture</h2>
         <div class="section-line"></div>
       </div>
+      <p class="arch-intro reveal">How I design platforms: everything is code, every change flows through a pipeline, every environment is observable, and secrets never live in the repo.</p>
+
       <div class="arch-diagrams">
+        <!-- CI/CD -->
         <div class="arch-card reveal">
           <div class="arch-card-title">⚙ CI/CD &amp; GitOps Pipeline</div>
           <div class="flow-row">
@@ -267,7 +270,15 @@
             <div class="flow-arrow">→</div>
             <div class="arch-node node-color-mon"><div class="arch-node-icon">📈</div>Grafana</div>
           </div>
+          <ul class="arch-points">
+            <li>Multi-stage pipelines: build → test → scan → package → deploy</li>
+            <li>Jenkins shared libraries reused across 15+ apps</li>
+            <li>Argo CD keeps clusters self-healing and in sync with Git</li>
+            <li>Result: 50% faster deployments, 35% fewer release failures</li>
+          </ul>
         </div>
+
+        <!-- MLOps -->
         <div class="arch-card reveal">
           <div class="arch-card-title">🤖 MLOps Lifecycle</div>
           <div class="flow-row">
@@ -291,7 +302,124 @@
             <div class="flow-arrow">→</div>
             <div class="arch-node node-color-mon"><div class="arch-node-icon">📉</div>Drift Detection</div>
           </div>
+          <ul class="arch-points">
+            <li>PySpark feature pipelines process 500GB+ per day</li>
+            <li>Every run tracked in MLflow with a full audit trail</li>
+            <li>Drift breach triggers alerts and automated retraining</li>
+            <li>Result: release cycles cut from weeks to days, 60% fewer ML incidents</li>
+          </ul>
         </div>
+
+        <!-- Platform topology (wide) -->
+        <div class="arch-card wide reveal">
+          <div class="arch-card-title">☁ Multi-Cloud Platform Topology</div>
+          <div class="layer">
+            <div class="layer-label">Edge</div>
+            <div class="layer-nodes">
+              <div class="arch-node"><div class="arch-node-icon">🌐</div>Users / Clients</div>
+              <div class="flow-arrow">→</div>
+              <div class="arch-node node-color-aws"><div class="arch-node-icon">🧭</div>Route 53 / DNS</div>
+              <div class="flow-arrow">→</div>
+              <div class="arch-node node-color-green"><div class="arch-node-icon">🔐</div>NGINX Ingress + TLS</div>
+              <div class="flow-arrow">→</div>
+              <div class="arch-node node-color-aws"><div class="arch-node-icon">⚖️</div>ALB / App Gateway</div>
+            </div>
+          </div>
+          <div class="layer">
+            <div class="layer-label">Compute</div>
+            <div class="layer-nodes">
+              <div class="arch-node node-color-azure"><div class="arch-node-icon">⎈</div>AKS<div class="node-sub">Azure</div></div>
+              <div class="arch-node node-color-aws"><div class="arch-node-icon">⎈</div>EKS / ECS Fargate<div class="node-sub">AWS</div></div>
+              <div class="arch-node node-color-k8s"><div class="arch-node-icon">⎈</div>GKE<div class="node-sub">GCP</div></div>
+              <div class="arch-node"><div class="arch-node-icon">🖥️</div>Alibaba ECS</div>
+              <div class="arch-node"><div class="arch-node-icon">📈</div>HPA / Cluster Autoscaler</div>
+            </div>
+          </div>
+          <div class="layer">
+            <div class="layer-label">Environments</div>
+            <div class="layer-nodes">
+              <div class="arch-node">Dev</div><div class="flow-arrow">→</div>
+              <div class="arch-node">QA</div><div class="flow-arrow">→</div>
+              <div class="arch-node">UAT</div><div class="flow-arrow">→</div>
+              <div class="arch-node node-color-green">Prod<div class="node-sub">approval gate</div></div>
+            </div>
+          </div>
+          <div class="layer">
+            <div class="layer-label">Data &amp; Secrets</div>
+            <div class="layer-nodes">
+              <div class="arch-node node-color-aws"><div class="arch-node-icon">🪣</div>S3 / Blob / GCS</div>
+              <div class="arch-node"><div class="arch-node-icon">🔥</div>PySpark Feature Store</div>
+              <div class="arch-node node-color-green"><div class="arch-node-icon">🗝️</div>Vault / Key Vault</div>
+              <div class="arch-node node-color-azure"><div class="arch-node-icon">📨</div>Service Bus</div>
+            </div>
+          </div>
+          <div class="layer">
+            <div class="layer-label">Provisioning</div>
+            <div class="layer-nodes">
+              <div class="arch-node"><div class="arch-node-icon">🏗️</div>Terraform / Terragrunt</div>
+              <div class="arch-node"><div class="arch-node-icon">🧱</div>AWS CDK (Python)</div>
+              <div class="arch-node"><div class="arch-node-icon">🔧</div>Ansible</div>
+              <div class="arch-node node-color-azure"><div class="arch-node-icon">📐</div>ARM Templates</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DevSecOps -->
+        <div class="arch-card reveal">
+          <div class="arch-card-title">🔒 DevSecOps Gates</div>
+          <div class="flow-row">
+            <div class="arch-node node-color-green"><div class="arch-node-icon">🔬</div>SAST<div class="node-sub">SonarQube</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="arch-node node-color-green"><div class="arch-node-icon">🛡️</div>Image Scan<div class="node-sub">Trivy / Snyk</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="arch-node node-color-green"><div class="arch-node-icon">📜</div>IaC Scan<div class="node-sub">Checkov</div></div>
+          </div>
+          <div class="flow-down">↓</div>
+          <div class="flow-row">
+            <div class="arch-node node-color-green"><div class="arch-node-icon">🕷️</div>DAST<div class="node-sub">OWASP ZAP</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="arch-node node-color-green"><div class="arch-node-icon">🗝️</div>Secrets<div class="node-sub">Vault / CSI driver</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="arch-node node-color-k8s"><div class="arch-node-icon">🚦</div>RBAC + Network Policies</div>
+          </div>
+          <ul class="arch-points">
+            <li>A failed gate stops the pipeline before anything ships</li>
+            <li>Secrets are injected at runtime, never stored in Git</li>
+            <li>Result: 40% fewer CVEs, SOC2-aligned controls</li>
+          </ul>
+        </div>
+
+        <!-- Observability -->
+        <div class="arch-card reveal">
+          <div class="arch-card-title">📊 Observability &amp; Reliability</div>
+          <div class="flow-row">
+            <div class="arch-node"><div class="arch-node-icon">📦</div>Apps &amp; Models</div>
+            <div class="flow-arrow">→</div>
+            <div class="arch-node node-color-mon"><div class="arch-node-icon">📊</div>Prometheus</div>
+            <div class="arch-node node-color-mon"><div class="arch-node-icon">📜</div>Loki / ELK</div>
+            <div class="arch-node node-color-mon"><div class="arch-node-icon">🔎</div>Jaeger</div>
+          </div>
+          <div class="flow-down">↓</div>
+          <div class="flow-row">
+            <div class="arch-node node-color-mon"><div class="arch-node-icon">📈</div>Grafana<div class="node-sub">SLO / SLI dashboards</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="arch-node node-color-mon"><div class="arch-node-icon">🚨</div>Alertmanager</div>
+            <div class="flow-arrow">→</div>
+            <div class="arch-node"><div class="arch-node-icon">📟</div>PagerDuty<div class="node-sub">On-call + RCA</div></div>
+          </div>
+          <ul class="arch-points">
+            <li>Metrics, logs and traces in one view, with custom ML dashboards</li>
+            <li>PDBs, HPA and zero-downtime rollouts protect the SLA</li>
+            <li>Result: 99.9% uptime, 45% lower mean time to detect</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="arch-principles">
+        <div class="principle reveal"><div class="principle-title">Everything as code</div><div class="principle-desc">Infrastructure, pipelines and cluster state live in Git and are reviewed like application code.</div></div>
+        <div class="principle reveal"><div class="principle-title">Promote, don't rebuild</div><div class="principle-desc">One immutable image moves Dev → QA → UAT → Prod with approval gates and rollback.</div></div>
+        <div class="principle reveal"><div class="principle-title">Secure by default</div><div class="principle-desc">Zero-trust networking, least-privilege IAM and scanned artifacts at every stage.</div></div>
+        <div class="principle reveal"><div class="principle-title">Cost aware</div><div class="principle-desc">Rightsizing, autoscaling and cleanup of unused resources brought 25% cloud savings.</div></div>
       </div>
     </section>
 
