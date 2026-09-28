@@ -53,27 +53,27 @@
         </div>
       </div>
 
-      <!-- HERO VISUAL — matches the provided image -->
+      <!-- NEW HERO VISUAL: Terminal card -->
       <div class="hero-visual">
-        <div class="profile-frame">
-          <div class="profile-ring-outer"></div>
-          <div class="profile-ring"></div>
-          <div class="profile-ring-2"></div>
-          <div class="avatar-placeholder"><span>RD</span></div>
-        </div>
-
-        <!-- Stat cards positioned exactly like the image -->
-        <div class="stat-card stat-1">
-          <div class="num">50%</div>
-          <div class="label">Faster Deployments</div>
-        </div>
-        <div class="stat-card stat-2">
-          <div class="num">99.9%</div>
-          <div class="label">Production Uptime</div>
-        </div>
-        <div class="stat-card stat-3">
-          <div class="num">6+</div>
-          <div class="label">Years Experience</div>
+        <div class="term">
+          <div class="term-bar">
+            <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+            <span class="term-title">ravi@platform : ~/pipeline</span>
+          </div>
+          <div class="term-body">
+            <p><span class="prompt">$</span> kubectl get pods -n prod</p>
+            <p class="ok">✔ 15/15 services Running</p>
+            <p><span class="prompt">$</span> argocd app sync mlops-inference</p>
+            <p class="ok">✔ Synced · Healthy</p>
+            <p><span class="prompt">$</span> terraform apply -auto-approve</p>
+            <p class="ok">✔ Apply complete · 0 drift</p>
+            <p><span class="prompt">$</span> <span class="caret"></span></p>
+          </div>
+          <div class="term-stats">
+            <div class="term-stat"><div class="num">50%</div><div class="label">Faster Deployments</div></div>
+            <div class="term-stat"><div class="num">99.9%</div><div class="label">Production Uptime</div></div>
+            <div class="term-stat"><div class="num">6+</div><div class="label">Years Experience</div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -303,6 +303,7 @@
         <div class="section-line"></div>
       </div>
       <div class="timeline">
+        <!-- Multiscale -->
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-header">
@@ -324,6 +325,7 @@
           </ul>
         </div>
 
+        <!-- Cyient -->
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-header">
@@ -341,6 +343,7 @@
           </ul>
         </div>
 
+        <!-- Novelis -->
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-header">
@@ -358,6 +361,7 @@
           </ul>
         </div>
 
+        <!-- Micron -->
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-header">
@@ -647,7 +651,7 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
 
-    // Fallback
+    // Fallback: show all after short delay if observer fails
     setTimeout(() => {
       reveals.forEach(el => el.classList.add('visible'));
     }, 1200);
