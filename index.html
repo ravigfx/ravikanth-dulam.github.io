@@ -18,7 +18,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">RD <span>·</span> DevOps · MLOps</a>
+    <a href="#" class="nav-logo"><span>·</span> DevOps · MLOps</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Stack</a></li>
@@ -52,15 +52,29 @@
           <a href="https://linkedin.com/in/ravi-kanth-dulam-a74066263" target="_blank" class="contact-item"><i class="fab fa-linkedin"></i> LinkedIn</a>
         </div>
       </div>
+
+      <!-- HERO VISUAL — matches the provided image -->
       <div class="hero-visual">
         <div class="profile-frame">
-          <div class="profile-ring-2"></div>
+          <div class="profile-ring-outer"></div>
           <div class="profile-ring"></div>
+          <div class="profile-ring-2"></div>
           <div class="avatar-placeholder"><span>RD</span></div>
         </div>
-        <div class="stat-card stat-1"><div class="num">50%</div><div class="label">Faster Deployments</div></div>
-        <div class="stat-card stat-2"><div class="num">99.9%</div><div class="label">Production Uptime</div></div>
-        <div class="stat-card stat-3"><div class="num">6+</div><div class="label">Years Experience</div></div>
+
+        <!-- Stat cards positioned exactly like the image -->
+        <div class="stat-card stat-1">
+          <div class="num">50%</div>
+          <div class="label">Faster Deployments</div>
+        </div>
+        <div class="stat-card stat-2">
+          <div class="num">99.9%</div>
+          <div class="label">Production Uptime</div>
+        </div>
+        <div class="stat-card stat-3">
+          <div class="num">6+</div>
+          <div class="label">Years Experience</div>
+        </div>
       </div>
     </div>
   </section>
@@ -289,7 +303,6 @@
         <div class="section-line"></div>
       </div>
       <div class="timeline">
-        <!-- Multiscale -->
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-header">
@@ -311,7 +324,6 @@
           </ul>
         </div>
 
-        <!-- Cyient -->
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-header">
@@ -329,7 +341,6 @@
           </ul>
         </div>
 
-        <!-- Novelis -->
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-header">
@@ -347,7 +358,6 @@
           </ul>
         </div>
 
-        <!-- Micron -->
         <div class="timeline-item reveal">
           <div class="timeline-dot"></div>
           <div class="timeline-header">
@@ -637,7 +647,7 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
 
-    // Fallback: show all after short delay if observer fails
+    // Fallback
     setTimeout(() => {
       reveals.forEach(el => el.classList.add('visible'));
     }, 1200);

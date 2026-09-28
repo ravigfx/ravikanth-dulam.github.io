@@ -276,7 +276,7 @@ nav {
 .contact-item:hover { color: var(--accent); }
 .contact-item i     { color: var(--accent); font-size: 0.85rem; }
 
-/* ── Hero Visual ── */
+/* ── Hero Visual (matches the provided image) ── */
 .hero-visual {
   position: relative;
   height: 520px;
@@ -284,6 +284,7 @@ nav {
   z-index: 2;
   animation: fadeUp 0.8s 0.2s ease both;
 }
+
 .profile-frame {
   position: absolute;
   top: 50%;
@@ -297,110 +298,150 @@ nav {
 .profile-frame:hover {
   transform: translate(-50%, -50%) scale(1.04);
 }
+
+/* Central circle */
 .avatar-placeholder {
-  width: 260px;
-  height: 260px;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
-  background: var(--surface-2);
-  border: 2px solid var(--border-accent);
+  background: #12121e;
+  border: 1.5px solid rgba(99, 210, 255, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px auto;
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  margin: 30px auto;
   position: relative;
-  z-index: 2;
+  z-index: 3;
+  box-shadow: 
+    0 0 0 1px rgba(99, 210, 255, 0.08),
+    0 0 40px rgba(99, 210, 255, 0.08);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
 .avatar-placeholder span {
   font-family: 'Syne', sans-serif;
-  font-size: 3.5rem;
+  font-size: 3.2rem;
   font-weight: 800;
-  color: var(--accent);
+  color: #63d2ff;
+  letter-spacing: 0.02em;
   transition: transform 0.3s ease;
 }
 .profile-frame:hover .avatar-placeholder {
   border-color: #63d2ff;
-  box-shadow: 0 0 30px rgba(99,210,255,0.45), 0 0 60px rgba(99,210,255,0.2);
+  box-shadow: 0 0 30px rgba(99,210,255,0.4), 0 0 60px rgba(99,210,255,0.15);
 }
 .profile-frame:hover .avatar-placeholder span {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
-/* Spinning Rings */
+/* Concentric rings (matching the image) */
 .profile-ring {
   position: absolute;
-  inset: -20px;
+  inset: 0;
   border-radius: 50%;
-  border: 1px solid var(--border-accent);
-  animation: spin-slow 20s linear infinite;
+  border: 1px solid rgba(99, 210, 255, 0.22);
+  animation: spin-slow 22s linear infinite;
+  z-index: 2;
 }
 .profile-ring::before {
   content: '';
   position: absolute;
-  top: -4px;
+  top: -3px;
   left: 50%;
   transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
+  width: 7px;
+  height: 7px;
+  background: #63d2ff;
   border-radius: 50%;
+  box-shadow: 0 0 10px #63d2ff;
 }
+
 .profile-ring-2 {
   position: absolute;
-  inset: -44px;
+  inset: -28px;
   border-radius: 50%;
-  border: 1px dashed rgba(99, 210, 255, 0.12);
-  animation: spin-slow 35s linear infinite reverse;
+  border: 1px solid rgba(99, 210, 255, 0.12);
+  animation: spin-slow 32s linear infinite reverse;
+  z-index: 1;
 }
+
+.profile-ring-outer {
+  position: absolute;
+  inset: -56px;
+  border-radius: 50%;
+  border: 1px dashed rgba(99, 210, 255, 0.08);
+  animation: spin-slow 48s linear infinite;
+  z-index: 0;
+}
+
 .profile-frame:hover .profile-ring {
-  animation-duration: 4s;
-  border-color: rgba(99,210,255,0.7);
+  animation-duration: 5s;
+  border-color: rgba(99,210,255,0.55);
 }
 .profile-frame:hover .profile-ring-2 {
-  animation-duration: 8s;
+  animation-duration: 10s;
   border-color: rgba(99,210,255,0.25);
 }
+
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 
-/* ── Stat Cards ── */
+/* ── Stat Cards (positions match the image) ── */
 .stat-card {
   position: absolute;
-  background: var(--surface);
-  border: 1px solid var(--border-accent);
+  background: #13131f;
+  border: 1px solid rgba(99, 210, 255, 0.28);
   border-radius: 10px;
-  padding: 0.8rem 1.2rem;
-  backdrop-filter: blur(10px);
-  min-width: 140px;
+  padding: 0.75rem 1.15rem;
+  backdrop-filter: blur(12px);
+  min-width: 148px;
   z-index: 10;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
 }
 .stat-card .num {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   color: #63d2ff;
   line-height: 1;
 }
 .stat-card .label {
-  font-size: 0.68rem;
-  color: #c0c3d4;
-  letter-spacing: 0.06em;
+  font-size: 0.65rem;
+  color: #b8bcd0;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
 }
-.stat-1 { top: 40px;  right: 20px;  animation: float  6s    ease-in-out infinite; }
-.stat-2 { bottom: 80px; left: 0;    animation: float  6s 2s ease-in-out infinite; }
-.stat-3 { top: 50%;   right: -10px; animation: float3 6s 4s ease-in-out infinite; }
+
+/* Top-right: 50% Faster Deployments */
+.stat-1 {
+  top: 28px;
+  right: 8px;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Bottom-left: 99.9% Production Uptime */
+.stat-2 {
+  bottom: 70px;
+  left: -10px;
+  animation: float 6s 2s ease-in-out infinite;
+}
+
+/* Middle-right: 6+ Years Experience */
+.stat-3 {
+  top: 48%;
+  right: -18px;
+  animation: float3 6s 4s ease-in-out infinite;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-12px); }
+  50%       { transform: translateY(-10px); }
 }
 @keyframes float3 {
   0%, 100% { transform: translateY(-50%); }
-  50%       { transform: translateY(calc(-50% - 12px)); }
+  50%       { transform: translateY(calc(-50% - 10px)); }
 }
 
 /* ── Main Content ── */
@@ -999,8 +1040,9 @@ footer {
   .contact-strip { justify-content: center; }
   .hero-desc     { margin: 0 auto 2rem; }
   .hero-visual   { height: 340px; }
-  .avatar-placeholder { width: 200px; height: 200px; }
-  .stat-card     { display: none; }
+  .avatar-placeholder { width: 180px; height: 180px; margin: 40px auto; }
+  .avatar-placeholder span { font-size: 2.6rem; }
+  .stat-card { display: none; } /* hide floating cards on mobile for cleaner look */
   main { padding: 0 1.5rem 4rem; }
   .projects-grid { grid-template-columns: 1fr; }
   .project-card.featured { grid-column: span 1; }
